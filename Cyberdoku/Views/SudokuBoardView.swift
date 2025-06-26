@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SudokuBoardView: View {
     @ObservedObject var viewModel: SudokuViewModel
-
+    
     func cellBackgroundColor(_ cell: SudokuCell) -> Color {
         if cell.isOriginal {
             return Color.gray
@@ -52,7 +52,7 @@ struct SudokuBoardView_Previews: PreviewProvider {
     static var previews: some View {
         let puzzle = PuzzleLoader.load(named: "easy")
         let vm = SudokuViewModel(puzzle: puzzle?.template ?? Array(repeating: 0, count: 81))
-
+        
         SudokuBoardView(viewModel: vm)
             .padding()
             .previewLayout(.sizeThatFits)
