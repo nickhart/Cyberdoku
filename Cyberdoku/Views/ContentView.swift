@@ -48,7 +48,7 @@ struct ContentView: View {
             .alert("Congratulations!", isPresented: $showSolvedConfirmation) {
                 Button("Done", role: .cancel) { }
             } message: {
-                Text("\(agentUsed ? "I" : "You") solved the puzzle!")
+                Text("\(agentUsed ? "We" : "You") solved the puzzle!")
             }
             .padding()
             HStack {
