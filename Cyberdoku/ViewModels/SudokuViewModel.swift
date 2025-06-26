@@ -26,6 +26,10 @@ class SudokuViewModel: ObservableObject {
         return board.cells[index]
     }
 
+    var remainingCounts: [Int] {
+        board.remainingCounts()
+    }
+
     func selectCell(row: Int, col: Int) {
         selectedCellIndex = row * 9 + col
     }

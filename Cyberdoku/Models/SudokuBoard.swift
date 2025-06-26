@@ -28,7 +28,7 @@ struct SudokuBoard {
             return SudokuCell(value: value, row: row, col: col, isOriginal: isOriginal)
         }
     }
-    
+
     func isValid() -> Bool {
         // Validate all rows
         for row in 0..<Self.gridSize {
@@ -51,6 +51,12 @@ struct SudokuBoard {
         }
         
         return true
+    }
+    
+    func isSolved() -> Bool {
+        // All cells must be non-zero
+        let allFilled = cells.allSatisfy { $0.value != 0 }
+        return allFilled && isValid()
     }
     
     func index(row: Int, col: Int) -> Int {
@@ -95,6 +101,20 @@ struct SudokuBoard {
 
     private func hasDuplicates(_ values: [Int]) -> Bool {
         Set(values).count != values.count
+    }
+}
+
+extension SudokuBoard {
+    func remainingCounts() -> [Int] {
+        var counts = [Int](repeating: 0, count: 10)  // Index 0–9
+
+        for cell in cells {
+            if (1...9).contains(cell.value) {
+                counts[cell.value] += 1
+            }
+        }
+
+        return (1...9).map { 9 - counts[$0] }
     }
 }
 
