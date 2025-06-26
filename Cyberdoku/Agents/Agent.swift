@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol Agent {
+    var name: String { get }
+    func nextMoves(for board: SudokuBoard) -> [Move]
+}
+

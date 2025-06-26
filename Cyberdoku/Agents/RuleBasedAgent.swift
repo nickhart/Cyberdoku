@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+struct RuleBasedAgent: Agent {
+    let name: String = "Rule-Based Agent"
+    let rules: [Rule]
+
+    func nextMoves(for board: SudokuBoard) -> [Move] {
+        for rule in rules {
+            let moves = rule.apply(to: board)
+            if !moves.isEmpty {
+                return moves
+            }
+        }
+        return []
+    }
+}
+
