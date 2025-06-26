@@ -40,7 +40,7 @@ Cyberdoku/
 - [x] Create `SudokuCell` model with notes and original flag
 - [x] Set up GitHub repo and structure folders
 - [x] Pick a name: **Cyberdoku**
-- [ ] Build `SudokuBoard` model with 9×9 access helpers
+- [x] Build `SudokuBoard` model with 9×9 access helpers
 - [ ] Create `SudokuBoardView` with SwiftUI grid
 - [ ] Add pencil note mode toggle and cell highlighting
 - [ ] Implement rule-based AI agent
