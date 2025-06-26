@@ -41,12 +41,13 @@ Cyberdoku/
 - [x] Set up GitHub repo and structure folders
 - [x] Pick a name: **Cyberdoku**
 - [x] Build `SudokuBoard` model with 9×9 access helpers
-- [ ] Create `SudokuBoardView` with SwiftUI grid
-- [ ] Add pencil note mode toggle and cell highlighting
+- [x] Create `SudokuBoardView` with SwiftUI grid
+= [ ] Implement serialization
 - [ ] Implement rule-based AI agent
 - [ ] Add OpenAI/CoreML agent interface
 - [ ] Wire up hint button
 - [ ] Add save/load logic to `Services/`
+- [ ] Add pencil note mode toggle and cell highlighting
 - [ ] Polish UI with animations and dark mode
 - [ ] Add Game Center integration (optional)
 

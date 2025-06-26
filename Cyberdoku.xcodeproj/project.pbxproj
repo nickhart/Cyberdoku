@@ -36,7 +36,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Agents/.gitkeep,
-				Extensions/.gitkeep,
 			);
 			target = AD8EA0402E0DA5F600B7D0DC /* Cyberdoku */;
 		};
