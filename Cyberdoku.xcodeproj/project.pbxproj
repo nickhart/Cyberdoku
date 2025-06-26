@@ -31,9 +31,35 @@
 		AD8EA08B2E0DAA2000B7D0DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AD8EA0992E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Cyberdoku" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Agents/.gitkeep,
+				Extensions/.gitkeep,
+				ViewModels/.gitkeep,
+			);
+			target = AD8EA0402E0DA5F600B7D0DC /* Cyberdoku */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		AD8EA09A2E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Compile Sources" phase from "Cyberdoku" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = AD8EA03D2E0DA5F600B7D0DC /* Sources */;
+			membershipExceptions = (
+				Resources/Puzzles/easy.json,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AD8EA0432E0DA5F600B7D0DC /* Cyberdoku */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AD8EA0992E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Cyberdoku" target */,
+				AD8EA09A2E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Compile Sources" phase from "Cyberdoku" target */,
+			);
 			path = Cyberdoku;
 			sourceTree = "<group>";
 		};
