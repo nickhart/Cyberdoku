@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel: SudokuViewModel
+
+    init() {
+        let puzzle = PuzzleLoader.load(named: "easy")
+        _viewModel = StateObject(wrappedValue: SudokuViewModel(puzzle: puzzle?.template ?? Array(repeating: 0, count: 81)))
+    }
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            SudokuBoardView(viewModel: viewModel)
+
+            HStack {
+                ForEach(1..<10) { n in
+                    Button("\(n)") {
+                        viewModel.setValue(n)
+                    }
+                    .frame(width: 32, height: 32)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(4)
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
