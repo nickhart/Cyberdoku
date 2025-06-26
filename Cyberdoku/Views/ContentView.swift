@@ -11,6 +11,7 @@ struct ContentView: View {
     @StateObject private var viewModel: SudokuViewModel
     @State private var showResetConfirmation = false
     @State var showSolvedConfirmation: Bool = false
+    @State var agentUsed: Bool = false
 
     init() {
         let puzzle = PuzzleLoader.load(named: "easy")
@@ -47,9 +48,21 @@ struct ContentView: View {
             .alert("Congratulations!", isPresented: $showSolvedConfirmation) {
                 Button("Done", role: .cancel) { }
             } message: {
-                Text("You solved the puzzle!")
+                Text("\(agentUsed ? "I" : "You") solved the puzzle!")
             }
             .padding()
+            HStack {
+                Spacer()
+                Button("Apply AI Move") {
+                    agentUsed = true
+                    viewModel.applyAgentMoves()
+                    showSolvedConfirmation = viewModel.board.isSolved()
+                }
+                .padding()
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+                Spacer()
+            }
             HStack {
                 Spacer()
                 Button("Reset") {

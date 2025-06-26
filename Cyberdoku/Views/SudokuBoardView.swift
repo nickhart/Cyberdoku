@@ -28,13 +28,14 @@ struct SudokuBoardView: View {
                     ForEach(0..<9, id: \.self) { col in
                         let index = row * 9 + col
                         let cell = viewModel.board.cells[index]
+                        let isAgentModified = viewModel.agentModifiedIndexes.contains(index)
                         Button(action: {
                             viewModel.selectCell(row: row, col: col)
                         }) {
                             Text(cell.value > 0 ? "\(cell.value)" : "")
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .aspectRatio(1, contentMode: .fit)
-                                .background(cellBackgroundColor(cell))
+                                .background(isAgentModified ? Color.green.opacity(0.3) : cellBackgroundColor(cell))
                                 .border(Color.black)
                                 .contentShape(Rectangle()) // Ensures the full frame is tappable
                         }
