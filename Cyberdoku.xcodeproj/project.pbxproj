@@ -27,6 +27,8 @@
 		AD8EA0412E0DA5F600B7D0DC /* Cyberdoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cyberdoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8EA04E2E0DA5F700B7D0DC /* CyberdokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyberdokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8EA0582E0DA5F800B7D0DC /* CyberdokuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyberdokuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8EA08A2E0DAA2000B7D0DC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AD8EA08B2E0DAA2000B7D0DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +81,8 @@
 				AD8EA0512E0DA5F700B7D0DC /* CyberdokuTests */,
 				AD8EA05B2E0DA5F800B7D0DC /* CyberdokuUITests */,
 				AD8EA0422E0DA5F600B7D0DC /* Products */,
+				AD8EA08A2E0DAA2000B7D0DC /* LICENSE */,
+				AD8EA08B2E0DAA2000B7D0DC /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
