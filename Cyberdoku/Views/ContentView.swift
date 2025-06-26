@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel: SudokuViewModel
+    @State private var showResetConfirmation = false
 
     init() {
         let puzzle = PuzzleLoader.load(named: "easy")
@@ -30,6 +31,27 @@ struct ContentView: View {
                 }
             }
             .padding()
+            HStack {
+                Spacer()
+                Button("Reset") {
+                    showResetConfirmation = true
+                }
+                .disabled(viewModel.moveHistory.isEmpty)
+                .alert("Reset Puzzle?", isPresented: $showResetConfirmation) {
+                    Button("Reset", role: .destructive) {
+                        viewModel.resetPuzzle()
+                    }
+                    Button("Cancel", role: .cancel) { }
+                } message: {
+                    Text("Are you sure you want to reset the puzzle? This will erase all your changes.")
+                }
+                Spacer()
+                Button("Undo") {
+                    viewModel.undoLastMove()
+                }
+                .disabled(viewModel.moveHistory.isEmpty)
+                Spacer()
+            }
         }
     }
 }
