@@ -31,22 +31,9 @@
 		AD8EA08B2E0DAA2000B7D0DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		AD8EA0992E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Cyberdoku" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Agents/.gitkeep,
-			);
-			target = AD8EA0402E0DA5F600B7D0DC /* Cyberdoku */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AD8EA0432E0DA5F600B7D0DC /* Cyberdoku */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				AD8EA0992E0DB01500B7D0DC /* Exceptions for "Cyberdoku" folder in "Cyberdoku" target */,
-			);
 			path = Cyberdoku;
 			sourceTree = "<group>";
 		};
