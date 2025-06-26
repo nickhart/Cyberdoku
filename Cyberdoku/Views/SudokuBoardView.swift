@@ -11,6 +11,16 @@ import SwiftUI
 struct SudokuBoardView: View {
     @ObservedObject var viewModel: SudokuViewModel
 
+    func cellBackgroundColor(_ cell: SudokuCell) -> Color {
+        if cell.isOriginal {
+            return Color.gray
+        } else if viewModel.selectedCellIndex == (cell.row * 9 + cell.col) {
+            return Color.cyan.opacity(0.5)
+        } else {
+            return Color.clear
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 2) {
             ForEach(0..<9, id: \.self) { row in
@@ -18,13 +28,18 @@ struct SudokuBoardView: View {
                     ForEach(0..<9, id: \.self) { col in
                         let index = row * 9 + col
                         let cell = viewModel.board.cells[index]
-                        Text(cell.value == 0 ? "" : "\(cell.value)")
-                            .frame(width: 36, height: 36)
-                            .background(viewModel.selectedCellIndex == index ? Color.blue.opacity(0.3) : Color.white)
-                            .border(Color.gray)
-                            .onTapGesture {
-                                viewModel.selectCell(row: row, col: col)
-                            }
+                        Button(action: {
+                            viewModel.selectCell(row: row, col: col)
+                        }) {
+                            Text(cell.value > 0 ? "\(cell.value)" : "")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .aspectRatio(1, contentMode: .fit)
+                                .background(cellBackgroundColor(cell))
+                                .border(Color.black)
+                                .contentShape(Rectangle()) // Ensures the full frame is tappable
+                        }
+                        .disabled(cell.isOriginal)
+                        .buttonStyle(PlainButtonStyle()) // Prevents weird padding/styling
                     }
                 }
             }
