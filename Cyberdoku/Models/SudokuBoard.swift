@@ -43,14 +43,27 @@ struct SudokuBoard {
         }
         
         // Validate all 3x3 boxes
-        for boxRow in 0..<3 {
-            for boxCol in 0..<3 {
-                let values = cellsInBox(boxRow: boxRow, boxCol: boxCol).map(\.value).filter { $0 != 0 }
+        for boxRow in stride(from: 0, to: Self.gridSize, by: 3) {
+            for boxCol in stride(from: 0, to: Self.gridSize, by: 3) {
+                let values = cellsInBox(startRow: boxRow, startCol: boxCol)
+                    .map(\.value)
+                    .filter { $0 != 0 }
                 if hasDuplicates(values) { return false }
             }
         }
-        
+
         return true
+    }
+    
+    func possibleValues(for cell: SudokuCell) -> [Int] {
+        guard cell.value == 0 else { return [] }
+
+        let used = Set(
+            cellsInRow(cell.row).map { $0.value } +
+            cellsInColumn(cell.col).map { $0.value } +
+            cellsInBox(for: cell).map { $0.value }
+        )
+        return (1...9).filter { !used.contains($0) }
     }
     
     func isSolved() -> Bool {
@@ -81,25 +94,28 @@ struct SudokuBoard {
         }
     }
 
-    private func cellsInRow(_ row: Int) -> [SudokuCell] {
+    func cellsInRow(_ row: Int) -> [SudokuCell] {
         cells.filter { $0.row == row }
     }
 
-    private func cellsInColumn(_ col: Int) -> [SudokuCell] {
+    func cellsInColumn(_ col: Int) -> [SudokuCell] {
         cells.filter { $0.col == col }
     }
 
-    private func cellsInBox(boxRow: Int, boxCol: Int) -> [SudokuCell] {
-        let startRow = boxRow * 3
-        let startCol = boxCol * 3
-
-        return cells.filter {
+    func cellsInBox(startRow: Int, startCol: Int) -> [SudokuCell] {
+        cells.filter {
             ($0.row >= startRow && $0.row < startRow + 3) &&
             ($0.col >= startCol && $0.col < startCol + 3)
         }
     }
-
-    private func hasDuplicates(_ values: [Int]) -> Bool {
+    
+    func cellsInBox(for cell: SudokuCell) -> [SudokuCell] {
+        let startRow = (cell.row / 3) * 3
+        let startCol = (cell.col / 3) * 3
+        return cellsInBox(startRow: startRow, startCol: startCol)
+    }
+    
+    func hasDuplicates(_ values: [Int]) -> Bool {
         Set(values).count != values.count
     }
 }
