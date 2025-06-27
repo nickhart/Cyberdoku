@@ -73,19 +73,20 @@ Planned: OpenAI agent for broader reasoning and advanced strategy synthesis.
 - [ ] Add test for `SudokuBoard+Classifier.swift` (`allUnits()`)
 
 ### 🧠 AI & Training
+- [ ] Improve training dataset coverage with more "None" classifications
 - [ ] Improve training dataset coverage with advanced strategies
 - [ ] Add OpenAI agent interface (experimental)
 - [ ] Build ML-based strategy recommender using classifier output
 - [ ] Improve classifier evaluation (cross-validation, metrics)
 
 ### 🧬 UI and UX
-- [ ] Add main menu, about, settings
-- [ ] Add catalog of puzzles organized by difficulty
+- [x] Add main menu, about, settings
+- [x] Add catalog of puzzles organized by difficulty
 - [ ] Make the board a little cleaner
 - [ ] Clean up control interface
 - [ ] Add UI feedback for AI vs human moves (e.g. highlighting)
 - [ ] Add pencil note mode toggle and cell highlighting
-- [ ] Add multiline status/info box
+- [x] Add multiline status/info box
 - [ ] Style control buttons consistently and clearly
 - [ ] Add a hint counter (smart, avoid double-counting)
 - [ ] Polish UI with animations and dark mode

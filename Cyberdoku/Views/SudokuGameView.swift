@@ -14,7 +14,8 @@ struct SudokuGameView: View {
     @State private var showSolvedConfirmation: Bool = false
     @State private var agentUsed: Bool = false
     @Environment(\.dismiss) private var dismiss
-
+    @State private var statusMessage: String = ""
+    
     var body: some View {
         VStack {
             SudokuBoardView(viewModel: viewModel)
@@ -53,6 +54,7 @@ struct SudokuGameView: View {
                 Button("Apply AI Move") {
                     agentUsed = true
                     viewModel.applyAgentMoves()
+                    statusMessage = "Applied AI move using rule-based agent."
                     showSolvedConfirmation = viewModel.board.isSolved()
                 }
                 .padding()
@@ -63,7 +65,9 @@ struct SudokuGameView: View {
                     let classifier = MLMoveClassifier()
                     let boardValues = viewModel.board.cells.map(\.value)
                     if let prediction = classifier.classify(board: boardValues) {
-                        print("Predicted move type: \(prediction)")
+                        statusMessage = "Classifier predicts: \(prediction)"
+                    } else {
+                        statusMessage = "Classifier could not determine a move."
                     }
                 }
                 .padding()
@@ -75,6 +79,7 @@ struct SudokuGameView: View {
                 Spacer()
                 Button("Reset") {
                     showResetConfirmation = true
+                    statusMessage = ""
                 }
                 .disabled(viewModel.moveHistory.isEmpty)
                 .alert("Reset Puzzle?", isPresented: $showResetConfirmation) {
@@ -88,6 +93,7 @@ struct SudokuGameView: View {
                 Spacer()
                 Button("Undo") {
                     viewModel.undoLastMove()
+                    statusMessage = "Last move undone."
                 }
                 .disabled(viewModel.moveHistory.isEmpty)
                 Spacer()
@@ -99,6 +105,15 @@ struct SudokuGameView: View {
                 .background(Color.red.opacity(0.1))
                 .cornerRadius(8)
                 Spacer()
+            }
+            
+            HStack {
+                Text(statusMessage.isEmpty ? " " : statusMessage)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(statusMessage.isEmpty ? Color.clear : Color.yellow.opacity(0.2))
+                        .cornerRadius(8)
+                        .transition(.opacity)
             }
         }
     }
