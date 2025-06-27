@@ -54,6 +54,7 @@ Planned: OpenAI agent for broader reasoning and advanced strategy synthesis.
 
 ## ✅ TODO
 
+### 🔧 Core Features
 - [x] Initialize Xcode SwiftUI project
 - [x] Create `SudokuCell` model with notes and original flag
 - [x] Set up GitHub repo and structure folders
@@ -66,26 +67,41 @@ Planned: OpenAI agent for broader reasoning and advanced strategy synthesis.
 - [x] Add `TrainingDataGenerator` CLI to produce labeled data
 - [x] Train and integrate CoreML model for move classification
 - [x] Hook up hint button using rule-based and ML agents
-- [ ] Add unit test for MLMoveClassifier
-- [ ] Add test for SudokuBoard+Classifier.swift (allUnits())
+
+### 🧪 Testing
+- [ ] Add unit test for `MLMoveClassifier`
+- [ ] Add test for `SudokuBoard+Classifier.swift` (`allUnits()`)
+
+### 🧠 AI & Training
 - [ ] Improve training dataset coverage with advanced strategies
 - [ ] Add OpenAI agent interface (experimental)
 - [ ] Build ML-based strategy recommender using classifier output
 - [ ] Improve classifier evaluation (cross-validation, metrics)
-- [ ] Add UI feedback for AI vs human moves (e.g. highlighting)
+
+### 🧬 UI and UX
 - [ ] Add main menu, about, settings
 - [ ] Add catalog of puzzles organized by difficulty
 - [ ] Make the board a little cleaner
-- [ ] clean up control interface
-- [ ] Localize strings
-- [ ] Add save/load logic to `Services/`
+- [ ] Clean up control interface
+- [ ] Add UI feedback for AI vs human moves (e.g. highlighting)
 - [ ] Add pencil note mode toggle and cell highlighting
+- [ ] Add multiline status/info box
+- [ ] Style control buttons consistently and clearly
+- [ ] Add a hint counter (smart, avoid double-counting)
 - [ ] Polish UI with animations and dark mode
+- [ ] Localize strings
+
+### 💾 Persistence
+- [ ] Save `SudokuViewModel` state to local storage
+- [ ] Implement "resume game" functionality
+- [ ] Clear game state from local storage when completed
+- [ ] Add save/load logic to `Services/`
+
+### 🎮 Optional Enhancements
 - [ ] Add Game Center integration (optional)
-- [ ] Review CLI folder structure before adding more commands
 - [ ] Add puzzle generator?
-- [ ] Add a training mode--let me capture a board and manually identify the strategy to use
- 
+- [ ] Add a training mode — capture a board and label the correct strategy
+- [ ] Review CLI folder structure before adding more commands
 
 ---
 
