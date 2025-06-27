@@ -118,9 +118,7 @@ struct SudokuBoard {
     func hasDuplicates(_ values: [Int]) -> Bool {
         Set(values).count != values.count
     }
-}
 
-extension SudokuBoard {
     func remainingCounts() -> [Int] {
         var counts = [Int](repeating: 0, count: 10)  // Index 0–9
 

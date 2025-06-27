@@ -23,17 +23,60 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		AD8EA1A72E0E139B00B7D0DC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AD8EA0412E0DA5F600B7D0DC /* Cyberdoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cyberdoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8EA04E2E0DA5F700B7D0DC /* CyberdokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyberdokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8EA0582E0DA5F800B7D0DC /* CyberdokuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyberdokuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8EA08A2E0DAA2000B7D0DC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		AD8EA08B2E0DAA2000B7D0DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AD8EA1A92E0E139B00B7D0DC /* CyberdokuCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CyberdokuCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AD8EA1BF2E0E149900B7D0DC /* Exceptions for "Cyberdoku" folder in "CyberdokuCLI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Agents/Agent.swift,
+				Agents/RuleBasedAgent.swift,
+				Classification/HiddenSingleClassifier.swift,
+				Classification/MoveClassifier.swift,
+				Classification/NakedSingleClassifier.swift,
+				"Extensions/Classification/SudokuClassifier_1Input+Init.swift",
+				"Extensions/Models/SudokuBoard+Classifier.swift",
+				"Extensions/Models/SudokuBoard+Serialization.swift",
+				"Extensions/ViewModels/SudokuViewModel+Agent.swift",
+				Models/Move.swift,
+				Models/SudokuBoard.swift,
+				Models/SudokuCell.swift,
+				Rules/HiddenSingleRule.swift,
+				Rules/NakedSingleRule.swift,
+				Rules/Rule.swift,
+				Rules/RuleEngine.swift,
+				Services/MLMoveClassifier.swift,
+				Services/PuzzleLoader.swift,
+			);
+			target = AD8EA1A82E0E139B00B7D0DC /* CyberdokuCLI */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AD8EA0432E0DA5F600B7D0DC /* Cyberdoku */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AD8EA1BF2E0E149900B7D0DC /* Exceptions for "Cyberdoku" folder in "CyberdokuCLI" target */,
+			);
 			path = Cyberdoku;
 			sourceTree = "<group>";
 		};
@@ -45,6 +88,11 @@
 		AD8EA05B2E0DA5F800B7D0DC /* CyberdokuUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CyberdokuUITests;
+			sourceTree = "<group>";
+		};
+		AD8EA1AA2E0E139B00B7D0DC /* CyberdokuCLI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CyberdokuCLI;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -71,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AD8EA1A62E0E139B00B7D0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,6 +135,7 @@
 				AD8EA0432E0DA5F600B7D0DC /* Cyberdoku */,
 				AD8EA0512E0DA5F700B7D0DC /* CyberdokuTests */,
 				AD8EA05B2E0DA5F800B7D0DC /* CyberdokuUITests */,
+				AD8EA1AA2E0E139B00B7D0DC /* CyberdokuCLI */,
 				AD8EA0422E0DA5F600B7D0DC /* Products */,
 				AD8EA08A2E0DAA2000B7D0DC /* LICENSE */,
 				AD8EA08B2E0DAA2000B7D0DC /* README.md */,
@@ -92,6 +148,7 @@
 				AD8EA0412E0DA5F600B7D0DC /* Cyberdoku.app */,
 				AD8EA04E2E0DA5F700B7D0DC /* CyberdokuTests.xctest */,
 				AD8EA0582E0DA5F800B7D0DC /* CyberdokuUITests.xctest */,
+				AD8EA1A92E0E139B00B7D0DC /* CyberdokuCLI */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +224,28 @@
 			productReference = AD8EA0582E0DA5F800B7D0DC /* CyberdokuUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		AD8EA1A82E0E139B00B7D0DC /* CyberdokuCLI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD8EA1AD2E0E139B00B7D0DC /* Build configuration list for PBXNativeTarget "CyberdokuCLI" */;
+			buildPhases = (
+				AD8EA1A52E0E139B00B7D0DC /* Sources */,
+				AD8EA1A62E0E139B00B7D0DC /* Frameworks */,
+				AD8EA1A72E0E139B00B7D0DC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AD8EA1AA2E0E139B00B7D0DC /* CyberdokuCLI */,
+			);
+			name = CyberdokuCLI;
+			packageProductDependencies = (
+			);
+			productName = CyberdokuCLI;
+			productReference = AD8EA1A92E0E139B00B7D0DC /* CyberdokuCLI */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,6 +267,9 @@
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = AD8EA0402E0DA5F600B7D0DC;
 					};
+					AD8EA1A82E0E139B00B7D0DC = {
+						CreatedOnToolsVersion = 16.4;
+					};
 				};
 			};
 			buildConfigurationList = AD8EA03C2E0DA5F600B7D0DC /* Build configuration list for PBXProject "Cyberdoku" */;
@@ -207,6 +289,7 @@
 				AD8EA0402E0DA5F600B7D0DC /* Cyberdoku */,
 				AD8EA04D2E0DA5F700B7D0DC /* CyberdokuTests */,
 				AD8EA0572E0DA5F800B7D0DC /* CyberdokuUITests */,
+				AD8EA1A82E0E139B00B7D0DC /* CyberdokuCLI */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +334,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AD8EA0542E0DA5F800B7D0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD8EA1A52E0E139B00B7D0DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -522,6 +612,32 @@
 			};
 			name = Release;
 		};
+		AD8EA1AE2E0E139B00B7D0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QCZTZM228N;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AD8EA1AF2E0E139B00B7D0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QCZTZM228N;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -557,6 +673,15 @@
 			buildConfigurations = (
 				AD8EA0692E0DA5F800B7D0DC /* Debug */,
 				AD8EA06A2E0DA5F800B7D0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD8EA1AD2E0E139B00B7D0DC /* Build configuration list for PBXNativeTarget "CyberdokuCLI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD8EA1AE2E0E139B00B7D0DC /* Debug */,
+				AD8EA1AF2E0E139B00B7D0DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

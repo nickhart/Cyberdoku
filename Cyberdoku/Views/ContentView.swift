@@ -61,6 +61,17 @@ struct ContentView: View {
                 .padding()
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(8)
+                Button("Try Classifier") {
+                    agentUsed = true
+                    let classifier = MLMoveClassifier()
+                    let boardValues = viewModel.board.cells.map(\.value)
+                    if let prediction = classifier.classify(board: boardValues) {
+                        print("Predicted move type: \(prediction)")
+                    }
+                }
+                .padding()
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
                 Spacer()
             }
             HStack {
