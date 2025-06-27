@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LoadGameView: View {
+    @EnvironmentObject var preferences: AppPreferences
+    @EnvironmentObject var appearance: AppearanceSettings
     @ObservedObject var appViewModel: AppViewModel
 
     var body: some View {

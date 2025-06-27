@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SudokuGameView: View {
+    @EnvironmentObject var preferences: AppPreferences
+    @EnvironmentObject var appearance: AppearanceSettings
     @ObservedObject var appViewModel: AppViewModel
     @ObservedObject var viewModel: SudokuViewModel
     @State private var showResetConfirmation = false

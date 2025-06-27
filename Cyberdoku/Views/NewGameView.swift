@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct NewGameView: View {
+    @EnvironmentObject var preferences: AppPreferences
+    @EnvironmentObject var appearance: AppearanceSettings
     @ObservedObject var appViewModel: AppViewModel
     @State private var selectedDifficulty: PuzzleDifficulty = .easy
     @State private var selectedPuzzleIndex: Int = 1

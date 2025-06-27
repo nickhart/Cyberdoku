@@ -1,9 +1,18 @@
+//
+//  GradientColorSet.swift
+//  Cyberdoku
+//
+//  Created by Nick Hart on 6/27/25.
+//
+
+import SwiftUI
+
 struct GradientColorSet {
     let name: String
     let colors: [Color]
     
     func generateColorGradient(count: Int) -> [Color] {
-        ColorGradientPalette.gradientColors(from: colors, steps: count)
+        ColorGradientPalette.generateColors(from: colors, count: count)
     }
 }
 

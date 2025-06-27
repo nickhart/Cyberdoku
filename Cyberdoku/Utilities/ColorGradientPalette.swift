@@ -22,6 +22,13 @@ extension Color {
     }
 }
 
+extension Color {
+    static let deepBlue = Color(red: 0.0, green: 0.2, blue: 0.5)
+    static let peach = Color(red: 1.0, green: 0.8, blue: 0.7)
+    static let lavender = Color(red: 0.9, green: 0.8, blue: 1.0)
+    static let skyBlue = Color(red: 0.53, green: 0.81, blue: 0.92)
+}
+
 struct ColorGradientPalette {
     static func generateColors(from anchors: [Color], count: Int) -> [Color] {
         precondition(anchors.count >= 2)
@@ -45,7 +52,7 @@ struct ColorGradientPalette {
     }
 
     static let sunset: [Color] = generateColors(from: [.purple, .pink, .orange, .yellow], count: 9)
-    static let ocean: [Color] = generateColors(from: [Color("DeepBlue"), .teal, .green, .cyan], count: 9)
+    static let ocean: [Color] = generateColors(from: [.deepBlue, .teal, .green, .cyan], count: 9)
     static let rainbow: [Color] = generateColors(from: [.red, .yellow, .green, .blue], count: 9)
     static let pastels: [Color] = generateColors(from: [.mint, .peach, .lavender, .cyan], count: 9)
 }

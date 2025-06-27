@@ -5,20 +5,29 @@
 //  Created by Nick Hart on 6/26/25.
 //
 
-
 import SwiftUI
 
 struct SudokuBoardView: View {
+//    @EnvironmentObject var preferences: AppPreferences
+    @EnvironmentObject var appearance: AppearanceSettings
     @ObservedObject var viewModel: SudokuViewModel
     
     func cellBackgroundColor(_ cell: SudokuCell) -> Color {
-        if cell.isOriginal {
-            return Color.gray
-        } else if viewModel.selectedCellIndex == (cell.row * 9 + cell.col) {
-            return Color.cyan.opacity(0.5)
-        } else {
-            return Color.clear
-        }
+        return appearance.resolvedPalette.cellBackground
+    }
+
+    func cellBorderColor(_ cell: SudokuCell) -> Color {
+        return appearance.resolvedPalette.borderColor
+    }
+
+    func cellTextColor(_ cell: SudokuCell) -> Color {
+        return appearance.resolvedPalette.color(for: cell.value)
+    }
+    
+    func isShadedBox(row: Int, col: Int) -> Bool {
+        let boxRow = row / 3
+        let boxCol = col / 3
+        return (boxRow + boxCol) % 2 == 1
     }
     
     var body: some View {
@@ -28,19 +37,17 @@ struct SudokuBoardView: View {
                     ForEach(0..<9, id: \.self) { col in
                         let index = row * 9 + col
                         let cell = viewModel.board.cells[index]
-                        let isAgentModified = viewModel.agentModifiedIndexes.contains(index)
-                        Button(action: {
-                            viewModel.selectCell(row: row, col: col)
-                        }) {
-                            Text(cell.value > 0 ? "\(cell.value)" : "")
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .aspectRatio(1, contentMode: .fit)
-                                .background(isAgentModified ? Color.green.opacity(0.3) : cellBackgroundColor(cell))
-                                .border(Color.black)
-                                .contentShape(Rectangle()) // Ensures the full frame is tappable
-                        }
-                        .disabled(cell.isOriginal)
-                        .buttonStyle(PlainButtonStyle()) // Prevents weird padding/styling
+                        let isModified = viewModel.agentModifiedIndexes.contains(index)
+                        CellView(
+                            cell: cell,
+                            isAgentModified: isModified,
+                            row: row,
+                            col: col,
+                            onSelect: {
+                                viewModel.selectCell(row: row, col: col)
+                            },
+                            isShaded: isShadedBox(row: row, col: col)
+                        )
                     }
                 }
             }

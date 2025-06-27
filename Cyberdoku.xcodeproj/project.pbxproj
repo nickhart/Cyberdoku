@@ -58,7 +58,9 @@
 				"Extensions/Models/SudokuBoard+Serialization.swift",
 				"Extensions/ViewModels/SudokuViewModel+Agent.swift",
 				"Extensions/ViewModels/SudokuViewModel+GameState.swift",
+				Models/ColorPalette.swift,
 				Models/GameState.swift,
+				Models/GradientColorSet.swift,
 				Models/Move.swift,
 				Models/PuzzleDifficulty.swift,
 				Models/SudokuBoard.swift,
@@ -67,9 +69,12 @@
 				Rules/NakedSingleRule.swift,
 				Rules/Rule.swift,
 				Rules/RuleEngine.swift,
+				Services/AppearanceSettings.swift,
+				Services/AppPreferences.swift,
 				Services/GameStorage.swift,
 				Services/MLMoveClassifier.swift,
 				Services/PuzzleLoader.swift,
+				Utilities/ColorGradientPalette.swift,
 			);
 			target = AD8EA1A82E0E139B00B7D0DC /* CyberdokuCLI */;
 		};
