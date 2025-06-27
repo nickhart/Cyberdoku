@@ -35,6 +35,7 @@ struct SudokuGameView: View {
                         Button("\(n)") {
                             viewModel.setValue(n)
                             showSolvedConfirmation = viewModel.board.isSolved()
+                            statusMessage = ""
                         }
                         .frame(width: 32, height: 32)
                         .background(Color.gray.opacity(0.2))
