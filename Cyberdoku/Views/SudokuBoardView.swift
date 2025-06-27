@@ -51,8 +51,8 @@ struct SudokuBoardView: View {
 
 struct SudokuBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        let puzzle = PuzzleLoader.load(named: "easy")
-        let vm = SudokuViewModel(puzzle: puzzle?.template ?? Array(repeating: 0, count: 81))
+        let puzzle = PuzzleLoader.load(difficulty: .easy)
+        let vm = SudokuViewModel(puzzle: puzzle ?? Puzzle.empty)
         
         SudokuBoardView(viewModel: vm)
             .padding()

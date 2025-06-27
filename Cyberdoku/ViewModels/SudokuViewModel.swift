@@ -15,12 +15,20 @@ class SudokuViewModel: ObservableObject {
     @Published var selectedCellIndex: Int? = nil
     @Published var moveHistory: [SudokuBoard] = []
     @Published var agentModifiedIndexes: Set<Int> = []
-    let puzzle: [Int]
+    let puzzle: Puzzle
     let agent = RuleBasedAgent(rules: [NakedSingleRule()])
     
-    init(puzzle: [Int]) {
-        self.puzzle = puzzle
-        self.board = SudokuBoard(template: puzzle)
+    init(puzzle: Puzzle? = nil) {
+        self.puzzle = puzzle ?? Puzzle.empty
+        self.board = SudokuBoard(template: self.puzzle.template)
+    }
+
+    init(board: SudokuBoard, selectedCellIndex: Int?, moveHistory: [SudokuBoard], agentModifiedIndexes: Set<Int>, puzzle: Puzzle? = nil) {
+        self.board = board
+        self.selectedCellIndex = selectedCellIndex
+        self.moveHistory = moveHistory
+        self.agentModifiedIndexes = agentModifiedIndexes
+        self.puzzle = puzzle ?? Puzzle.empty
     }
 
     var selectedCell: SudokuCell? {
@@ -53,7 +61,7 @@ class SudokuViewModel: ObservableObject {
     }
     
     func resetPuzzle() {
-        board = SudokuBoard(template: puzzle)
+        board = SudokuBoard(template: puzzle.template)
         moveHistory = []
         selectedCellIndex = nil
         agentModifiedIndexes.removeAll()

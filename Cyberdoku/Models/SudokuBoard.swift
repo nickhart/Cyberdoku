@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SudokuBoard {
+struct SudokuBoard: Codable {
     static let gridSize = 9
     static let cellCount = gridSize * gridSize
     
