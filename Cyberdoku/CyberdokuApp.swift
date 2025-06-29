@@ -11,7 +11,7 @@ import SwiftUI
 struct CyberdokuApp: App {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var preferences = AppPreferences()
-    @StateObject private var appearance = AppearanceSettings(colorScheme: .light)
+    @StateObject private var appearance = AppearanceSettings()
 
     var body: some Scene {
         WindowGroup {
@@ -19,10 +19,10 @@ struct CyberdokuApp: App {
                 .environmentObject(preferences)
                 .environmentObject(appearance)
                 .onAppear {
-                    appearance.update(for: colorScheme)
+                    appearance.update(for: colorScheme, selectedPalette: AppPreferences.colorPalette)
                 }
                 .onChange(of: colorScheme) { _, newScheme in
-                    appearance.update(for: newScheme)
+                    appearance.update(for: newScheme, selectedPalette: AppPreferences.colorPalette)
                 }
         }
     }

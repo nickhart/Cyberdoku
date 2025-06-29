@@ -21,10 +21,20 @@ struct CellView: View {
     var body: some View {
         Button(action: onSelect) {
             let palette = appearance.resolvedPalette
-            let backgroundColor = isAgentModified ? palette.agentModifiedBackground :
-            (isShaded ? palette.shadedBoxBackground :
-                palette.cellBackground)
+            let backgroundColor: Color = {
+                if isAgentModified {
+                    return palette.agentModifiedBackground
+                } else if cell.value == 0 {
+                    return isShaded ? palette.cellBackgroundEmptyShaded : palette.cellBackgroundEmptyUnshaded
+                } else if cell.isOriginal {
+                    return isShaded ? palette.cellBackgroundOriginalShaded : palette.cellBackgroundOriginalUnshaded
+                } else {
+                    return palette.cellBackgroundUserEntry
+                }
+            }()
             Text(cell.value > 0 ? "\(cell.value)" : "")
+                .monospacedDigit()
+                .fontWeight(.semibold) // or .bold
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .aspectRatio(1, contentMode: .fit)
                 .background(backgroundColor)
@@ -32,7 +42,7 @@ struct CellView: View {
                 .border(palette.borderColor)
                 .contentShape(Rectangle())
         }
-        .disabled(cell.isOriginal)
+        .allowsHitTesting(!cell.isOriginal)
         .buttonStyle(PlainButtonStyle())
     }
 }

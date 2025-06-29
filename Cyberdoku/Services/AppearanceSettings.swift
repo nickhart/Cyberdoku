@@ -9,16 +9,18 @@
 import SwiftUI
 
 final class AppearanceSettings: ObservableObject {
-    @Published var selectedPaletteName: String = "rainbow" // Persist this if needed
+    @Published var selectedPalette: String
     @Published var resolvedPalette: ColorPalette
 
-    init(colorScheme: ColorScheme) {
-        // Start with a default; could use UserDefaults to persist if desired
-        self.resolvedPalette = ColorPalette.themed(.rainbow, for: colorScheme)
+    init(colorScheme: ColorScheme = .light, selectedPalette: String? = nil) {
+        let paletteName = selectedPalette ?? "Default Accessible"
+        self.selectedPalette = paletteName
+        self.resolvedPalette = ColorPalette.named(paletteName, for: colorScheme)
     }
 
-    func update(for colorScheme: ColorScheme) {
-        // Call this when system appearance changes
-        self.resolvedPalette = ColorPalette.themed(.rainbow, for: colorScheme)
+    func update(for colorScheme: ColorScheme, selectedPalette: String? = nil) {
+        let paletteName = selectedPalette ?? "Default Accessible"
+        self.selectedPalette = paletteName
+        self.resolvedPalette = ColorPalette.named(paletteName, for: colorScheme)
     }
 }

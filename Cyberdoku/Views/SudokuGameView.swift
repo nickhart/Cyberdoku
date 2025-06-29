@@ -126,6 +126,8 @@ struct SudokuGameView: View {
     let puzzle = PuzzleLoader.load(difficulty: .easy)
     let viewModel = SudokuViewModel(puzzle: puzzle ?? Puzzle.empty)
     let appViewModel = AppViewModel()
+    let appearance = AppearanceSettings()
 
     SudokuGameView(appViewModel: appViewModel, viewModel: viewModel)
+        .environmentObject(appearance)
 }

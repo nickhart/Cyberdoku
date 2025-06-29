@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SudokuBoardView: View {
-//    @EnvironmentObject var preferences: AppPreferences
+    static let innerSpacing: CGFloat = 1
+    static let outerSpacing: CGFloat = 4
+    
     @EnvironmentObject var appearance: AppearanceSettings
     @ObservedObject var viewModel: SudokuViewModel
     
@@ -31,37 +33,52 @@ struct SudokuBoardView: View {
     }
     
     var body: some View {
-        VStack(spacing: 2) {
-            ForEach(0..<9, id: \.self) { row in
-                HStack(spacing: 2) {
-                    ForEach(0..<9, id: \.self) { col in
-                        let index = row * 9 + col
-                        let cell = viewModel.board.cells[index]
-                        let isModified = viewModel.agentModifiedIndexes.contains(index)
-                        CellView(
-                            cell: cell,
-                            isAgentModified: isModified,
-                            row: row,
-                            col: col,
-                            onSelect: {
-                                viewModel.selectCell(row: row, col: col)
-                            },
-                            isShaded: isShadedBox(row: row, col: col)
-                        )
+        VStack(spacing: Self.outerSpacing) {
+            ForEach(0..<3, id: \.self) { boxRow in
+                HStack(spacing: Self.outerSpacing) {
+                    ForEach(0..<3, id: \.self) { boxCol in
+                        // TODO: refactor this into SudokuBoxView
+                        VStack(spacing: Self.innerSpacing) {
+                            ForEach(0..<3, id: \.self) { cellRow in
+                                HStack(spacing: Self.innerSpacing) {
+                                    ForEach(0..<3, id: \.self) { cellCol in
+                                        let row = boxRow * 3 + cellRow
+                                        let col = boxCol * 3 + cellCol
+                                        let index = row * 9 + col
+                                        let cell = viewModel.board.cells[index]
+                                        let isModified = viewModel.agentModifiedIndexes.contains(index)
+                                        
+                                        CellView(
+                                            cell: cell,
+                                            isAgentModified: isModified,
+                                            row: row,
+                                            col: col,
+                                            onSelect: {
+                                                viewModel.selectCell(row: row, col: col)
+                                            },
+                                            isShaded: isShadedBox(row: row, col: col)
+                                        )
+                                        .aspectRatio(1, contentMode: .fit)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-        .padding()
+        .padding(Self.outerSpacing)
     }
 }
 
 struct SudokuBoardView_Previews: PreviewProvider {
     static var previews: some View {
         let puzzle = PuzzleLoader.load(difficulty: .easy)
-        let vm = SudokuViewModel(puzzle: puzzle ?? Puzzle.empty)
+        let viewModel = SudokuViewModel(puzzle: puzzle ?? Puzzle.empty)
+        let appearance = AppearanceSettings()
         
-        SudokuBoardView(viewModel: vm)
+        SudokuBoardView(viewModel: viewModel)
+            .environmentObject(appearance)
             .padding()
             .previewLayout(.sizeThatFits)
     }
