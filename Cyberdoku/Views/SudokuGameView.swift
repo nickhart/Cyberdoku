@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+extension View {
+    func styledButton(color: Color = .blue.opacity(0.1)) -> some View {
+        self
+            .padding()
+            .background(color)
+            .cornerRadius(8)
+    }
+}
+
 struct SudokuGameView: View {
     @EnvironmentObject var preferences: AppPreferences
     @EnvironmentObject var appearance: AppearanceSettings
@@ -60,9 +69,7 @@ struct SudokuGameView: View {
                     statusMessage = "Applied AI move using rule-based agent."
                     showSolvedConfirmation = viewModel.board.isSolved()
                 }
-                .padding()
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(8)
+                .styledButton()
                 Button("Try Classifier") {
                     agentUsed = true
                     let classifier = MLMoveClassifier()
@@ -73,9 +80,7 @@ struct SudokuGameView: View {
                         statusMessage = "Classifier could not determine a move."
                     }
                 }
-                .padding()
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(8)
+                .styledButton()
                 Spacer()
             }
             HStack {
@@ -84,6 +89,7 @@ struct SudokuGameView: View {
                     showResetConfirmation = true
                     statusMessage = ""
                 }
+                .styledButton()
                 .disabled(viewModel.moveHistory.isEmpty)
                 .alert("Reset Puzzle?", isPresented: $showResetConfirmation) {
                     Button("Reset", role: .destructive) {
@@ -98,25 +104,63 @@ struct SudokuGameView: View {
                     viewModel.undoLastMove()
                     statusMessage = "Last move undone."
                 }
+                .styledButton()
                 .disabled(viewModel.moveHistory.isEmpty)
                 Spacer()
                 Button("Exit") {
                     GameStorage.save(viewModel.currentState)
                     appViewModel.currentScreen = .mainMenu
                 }
-                .padding()
-                .background(Color.red.opacity(0.1))
-                .cornerRadius(8)
+                .styledButton(color: .red.opacity(0.1))
                 Spacer()
             }
-            
+            HStack {
+                Spacer()
+                Button("Auto-Note") {
+                    viewModel.autoNote()
+                    statusMessage = "Candidate notes updated."
+                }
+                .styledButton()
+                Spacer()
+            }
+            // Note-taking controls
+            if viewModel.mode == GameMode.note {
+                HStack {
+                    Text("Note mode:")
+                    ForEach(1...9, id: \.self) { n in
+                        Button("+\(n)") {
+                            viewModel.addPositiveNote(n)
+                        }
+                        .styledButton()
+
+                        Button("-\(n)") {
+                            viewModel.addNegativeNote(n)
+                        }
+                        .styledButton(color: .red.opacity(0.1))
+                    }
+                }
+                .padding(.horizontal)
+            }
+
+            // Training controls
+            if viewModel.mode == GameMode.training {
+                HStack {
+                    Text("Training mode:")
+                    Button("Start Capture") { viewModel.startCapture() }.styledButton()
+                    Button("Cancel") { viewModel.cancelCapture() }.styledButton(color: .red.opacity(0.1))
+                    Button("Save") { viewModel.saveCapture() }.styledButton(color: .green.opacity(0.1))
+                }
+                .padding(.horizontal)
+            }
+
             HStack {
                 Text(statusMessage.isEmpty ? " " : statusMessage)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(statusMessage.isEmpty ? Color.clear : Color.yellow.opacity(0.2))
-                        .cornerRadius(8)
-                        .transition(.opacity)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(statusMessage.isEmpty ? Color.clear : Color.yellow.opacity(0.2))
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                    .transition(.opacity)
             }
         }
     }

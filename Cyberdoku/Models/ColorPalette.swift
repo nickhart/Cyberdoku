@@ -23,6 +23,15 @@ struct ColorPalette {
     let cellBackgroundUserEntry: Color
     let cellBackgroundOriginalShaded: Color
     let cellBackgroundOriginalUnshaded: Color
+    let trainingPrimaryBorder: Color
+    let trainingPrimaryBackground: Color
+    let trainingSecondaryBorder: Color
+    let trainingSecondaryBackground: Color
+    let aiSolvedBorder: Color
+    let aiSolvedBackground: Color
+    let invalidBackground: Color
+    let playSelectionBorder: Color
+    let playSelectionBackground: Color
 
     func color(for number: Int) -> Color {
         if number == 0 {
@@ -58,7 +67,16 @@ extension ColorPalette {
             cellBackgroundEmptyUnshaded: isDark ? Color(white: 0.15) : Color(white: 0.95),
             cellBackgroundUserEntry: isDark ? Color.cyan.opacity(0.2) : Color.blue.opacity(0.15),
             cellBackgroundOriginalShaded: isDark ? Color(white: 0.8) : Color(white: 0.25),
-            cellBackgroundOriginalUnshaded: isDark ? Color(white: 0.85) : Color(white: 0.3)
+            cellBackgroundOriginalUnshaded: isDark ? Color(white: 0.85) : Color(white: 0.3),
+            trainingPrimaryBorder: .blue,
+            trainingPrimaryBackground: .blue.opacity(0.2),
+            trainingSecondaryBorder: .green,
+            trainingSecondaryBackground: .green.opacity(0.2),
+            aiSolvedBorder: .purple,
+            aiSolvedBackground: .purple.opacity(0.1),
+            invalidBackground: .red.opacity(0.15),
+            playSelectionBorder: .white,
+            playSelectionBackground: isDark ? Color.gray.opacity(0.15) : Color.gray.opacity(0.05)
         )
     }
 
@@ -77,7 +95,16 @@ extension ColorPalette {
         cellBackgroundEmptyUnshaded: Color(white: 0.95),
         cellBackgroundUserEntry: .blue.opacity(0.2),
         cellBackgroundOriginalShaded: Color(white: 0.75),
-        cellBackgroundOriginalUnshaded: Color(white: 0.85)
+        cellBackgroundOriginalUnshaded: Color(white: 0.85),
+        trainingPrimaryBorder: .blue,
+        trainingPrimaryBackground: .blue.opacity(0.2),
+        trainingSecondaryBorder: .green,
+        trainingSecondaryBackground: .green.opacity(0.2),
+        aiSolvedBorder: .purple,
+        aiSolvedBackground: .purple.opacity(0.1),
+        invalidBackground: .red.opacity(0.15),
+        playSelectionBorder: .white,
+        playSelectionBackground: Color.gray.opacity(0.05)
     )
 
     static var all: [ColorPalette] {

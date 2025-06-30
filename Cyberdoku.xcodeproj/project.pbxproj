@@ -62,6 +62,7 @@
 				Models/GameState.swift,
 				Models/GradientColorSet.swift,
 				Models/Move.swift,
+				Models/NoteBitset.swift,
 				Models/PuzzleDifficulty.swift,
 				Models/SudokuBoard.swift,
 				Models/SudokuCell.swift,
@@ -75,6 +76,7 @@
 				Services/MLMoveClassifier.swift,
 				Services/PuzzleLoader.swift,
 				Utilities/ColorGradientPalette.swift,
+				Views/NoteGridView.swift,
 			);
 			target = AD8EA1A82E0E139B00B7D0DC /* CyberdokuCLI */;
 		};

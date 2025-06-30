@@ -82,7 +82,7 @@ Planned: OpenAI agent for broader reasoning and advanced strategy synthesis.
 ### 🧬 UI and UX
 - [x] Add main menu, about, settings
 - [x] Add catalog of puzzles organized by difficulty
-- [ ] Make the board a little cleaner
+- [x] Make the board a little cleaner
 - [ ] Clean up control interface
 - [ ] Add UI feedback for AI vs human moves (e.g. highlighting)
 - [ ] Add pencil note mode toggle and cell highlighting

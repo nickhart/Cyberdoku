@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum NoteMode {
+    case positiveOnly
+    case positiveAndNegative
+}
+
 struct SudokuBoard: Codable {
     static let gridSize = 9
     static let cellCount = gridSize * gridSize
@@ -85,13 +90,33 @@ struct SudokuBoard: Codable {
         cells[idx].value = value
     }
     
-    mutating func toggleNote(_ note: Int, atRow row: Int, col: Int) {
+
+    mutating func togglePositiveNote(_ note: Int, atRow row: Int, col: Int) {
         let idx = index(row: row, col: col)
-        if cells[idx].notes.contains(note) {
-            cells[idx].notes.remove(note)
+        var cell = cells[idx]
+
+        if cell.positiveNotes.contains(note) {
+            cell.positiveNotes.remove(note)
         } else {
-            cells[idx].notes.insert(note)
+            cell.positiveNotes.insert(note)
+            cell.negativeNotes.remove(note)
         }
+
+        cells[idx] = cell
+    }
+
+    mutating func toggleNegativeNote(_ note: Int, atRow row: Int, col: Int) {
+        let idx = index(row: row, col: col)
+        var cell = cells[idx]
+
+        if cell.negativeNotes.contains(note) {
+            cell.negativeNotes.remove(note)
+        } else {
+            cell.negativeNotes.insert(note)
+            cell.positiveNotes.remove(note)
+        }
+
+        cells[idx] = cell
     }
 
     func cellsInRow(_ row: Int) -> [SudokuCell] {
@@ -130,5 +155,11 @@ struct SudokuBoard: Codable {
 
         return (1...9).map { 9 - counts[$0] }
     }
-}
 
+    // Helper to check if a value is valid at a given row and column (no conflicts in row, col, or box)
+    func isValid(_ value: Int, atRow row: Int, col: Int) -> Bool {
+        !cellsInRow(row).contains { $0.value == value } &&
+        !cellsInColumn(col).contains { $0.value == value } &&
+        !cellsInBox(startRow: (row / 3) * 3, startCol: (col / 3) * 3).contains { $0.value == value }
+    }
+}

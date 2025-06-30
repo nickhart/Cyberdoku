@@ -11,7 +11,7 @@ import Testing
 struct PuzzleLoaderTests {
     @Test
     func loadsEasyPuzzleFromBundle() {
-        let puzzle = PuzzleLoader.load(named: "easy")
+        let puzzle = PuzzleLoader.load(difficulty: .easy, index: 0)
         #expect(puzzle != nil)
         #expect(puzzle?.template.count == SudokuBoard.cellCount)
         #expect(puzzle?.template.allSatisfy { (0...9).contains($0) } == true)
@@ -19,7 +19,7 @@ struct PuzzleLoaderTests {
 
     @Test
     func failsToLoadMissingPuzzle() {
-        let puzzle = PuzzleLoader.load(named: "not-a-puzzle")
+        let puzzle = PuzzleLoader.load(difficulty: .easy, index: 1000000)
         #expect(puzzle == nil)
     }
 }

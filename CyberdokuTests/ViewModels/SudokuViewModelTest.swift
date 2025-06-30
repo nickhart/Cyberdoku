@@ -11,7 +11,7 @@ import Testing
 
 struct SudokuViewModelTest {
     @Test func canSelectAndSetValue() async {
-        let puzzle = Array(repeating: 0, count: 81)
+        let puzzle = Puzzle(title: "test", template: Array(repeating: 0, count: 81))
         let vm = await SudokuViewModel(puzzle: puzzle)
 
         await vm.selectCell(row: 0, col: 0)
@@ -21,8 +21,10 @@ struct SudokuViewModelTest {
     }
 
     @Test func cannotChangeOriginalValue() async {
-        var puzzle = Array(repeating: 0, count: 81)
-        puzzle[10] = 7
+        var template = Array(repeating: 0, count: 81)
+        template[10] = 7
+        let puzzle = Puzzle(title: "test", template: template)
+
         let vm = await SudokuViewModel(puzzle: puzzle)
 
         await vm.selectCell(row: 1, col: 1)
@@ -32,7 +34,9 @@ struct SudokuViewModelTest {
     }
 
     @Test func selectingUpdatesSelectedCell() async {
-        let vm = await SudokuViewModel(puzzle: Array(repeating: 0, count: 81))
+        let puzzle = Puzzle(title: "test", template: Array(repeating: 0, count: 81))
+
+        let vm = await SudokuViewModel(puzzle: puzzle)
 
         await vm.selectCell(row: 3, col: 2)
         let selected = await vm.selectedCell
